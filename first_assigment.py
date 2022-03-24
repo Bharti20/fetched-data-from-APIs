@@ -1,13 +1,11 @@
 import requests
-import json
 
 url = 'https://datausa.io/api/data?drilldowns=Nation&measures=Population'
 response = requests.get(url)
-allData = response.text
-data_in_dic=json.loads(allData)
+allData = response.json()
 mainList = []
 
-for i in data_in_dic['data']:
+for i in allData['data']:
     list = []
     for key in i:
         if key == 'Nation' or key == 'Year' or key == 'Population':
